@@ -40,10 +40,11 @@ export default function users(state = initialState, action) {
 }
 
 export const Creators = {
-  addUserRequest: user => ({
+  addUserRequest: (user, coordenates) => ({
     type: Types.ADD_REQUEST,
     payload: {
-      user
+      user,
+      coordenates
     }
   }),
 

@@ -1,8 +1,14 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 import Map from "~/components/Map";
+import Modal from "~/components/Modal";
 
-const Main = () => <Map />;
+const Main = () => (
+  <Fragment>
+    <Map />
+    <Modal />
+  </Fragment>
+);
 
 Main.navigationOptions = {
   title: "MapDevs"

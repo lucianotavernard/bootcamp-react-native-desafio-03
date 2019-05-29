@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-
-import { Creators as UsersActions } from "~/store/ducks/users";
-
 import MapboxGL from "@mapbox/react-native-mapbox-gl";
 import UserPin from "../UserPin";
+
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { Creators as ModalActions } from "~/store/ducks/modal";
 
 import styles from "./styles";
 
@@ -29,7 +28,8 @@ class Map extends Component {
           }).isRequired
         })
       ).isRequired
-    })
+    }),
+    showModal: PropTypes.func.isRequired
   };
 
   state = {
@@ -37,20 +37,25 @@ class Map extends Component {
     longitude: -35.21520224
   };
 
+  handleClick = ([longitude, latitude]) => {
+    const { showModal } = this.props;
+
+    showModal({ latitude, longitude });
+  };
+
   render() {
     const { longitude, latitude } = this.state;
-    const {
-      users: { data: users }
-    } = this.props;
+    const { users } = this.props;
 
     return (
       <MapboxGL.MapView
+        style={styles.container}
+        styleURL={MapboxGL.StyleURL.Dark}
         centerCoordinate={[longitude, latitude]}
         showUserLocation
-        styleURL={MapboxGL.StyleURL.Dark}
-        style={styles.container}
+        onLongPress={({ geometry }) => this.handleClick(geometry.coordinates)}
       >
-        {users.map(user => (
+        {users.data.map(user => (
           <UserPin key={user.id} user={user} />
         ))}
       </MapboxGL.MapView>
@@ -63,7 +68,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators(UsersActions, dispatch);
+  bindActionCreators(ModalActions, dispatch);
 
 export default connect(
   mapStateToProps,

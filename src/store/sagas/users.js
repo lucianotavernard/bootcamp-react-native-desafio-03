@@ -22,8 +22,8 @@ export function* addUser(action) {
     const repositoryData = {
       id: data.id,
       url: data.html_url,
-      name: data.name,
-      avatar: data.avatar_url,
+      name: data.name || user,
+      avatar_url: data.avatar_url,
       username: data.login,
       coordenates
     };
