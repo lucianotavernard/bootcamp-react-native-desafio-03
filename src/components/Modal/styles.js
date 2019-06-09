@@ -1,4 +1,4 @@
-import styled from "styled-components/native";
+import styled from 'styled-components/native';
 
 export const Container = styled.View`
   flex: 1;
@@ -11,7 +11,7 @@ export const Wrapper = styled.View`
   border-radius: 4px;
   background-color: white;
 
-  margin: ${({ noMargin }) => (noMargin ? "0px" : "0 20px")};
+  margin: ${({ noMargin }) => (noMargin ? '0px' : '0 20px')};
 `;
 
 export const Title = styled.Text`
@@ -29,7 +29,7 @@ export const Input = styled.TextInput`
   border-radius: 4px;
   font-size: 16px;
 
-  border-color: ${({ hasError }) => (hasError ? "#e37a7a" : "#ddd")};
+  border-color: ${({ hasError }) => (hasError ? '#e37a7a' : '#ddd')};
 `;
 
 export const Buttons = styled.View`
@@ -43,5 +43,5 @@ export const Button = styled.TouchableOpacity`
   padding: 15px;
   border-radius: 4px;
 
-  background-color: ${({ success }) => (success ? "#9dca83" : "#999")};
+  background-color: ${({ success }) => (success ? '#9dca83' : '#999')};
 `;

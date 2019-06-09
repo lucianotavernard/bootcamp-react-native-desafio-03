@@ -1,15 +1,17 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import { Text, Modal as ModalNative, ActivityIndicator } from "react-native";
-import ErrorMessage from "~/components/ErrorMessage";
+import { Text, Modal as ModalNative, ActivityIndicator } from 'react-native';
+import ErrorMessage from '~/components/ErrorMessage';
 
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { Creators as UsersActions } from "~/store/ducks/users";
-import { Creators as ModalActions } from "~/store/ducks/modal";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Creators as UsersActions } from '~/store/ducks/users';
+import { Creators as ModalActions } from '~/store/ducks/modal';
 
-import { Container, Wrapper, Title, Input, Buttons, Button } from "./styles";
+import {
+  Container, Wrapper, Title, Input, Buttons, Button,
+} from './styles';
 
 class Modal extends Component {
   static propTypes = {
@@ -17,26 +19,26 @@ class Modal extends Component {
       visible: PropTypes.bool,
       coordinates: PropTypes.shape({
         latitude: PropTypes.number,
-        longitude: PropTypes.number
-      }).isRequired
+        longitude: PropTypes.number,
+      }).isRequired,
     }).isRequired,
     users: PropTypes.shape({
       error: PropTypes.string,
-      loading: PropTypes.bool
+      loading: PropTypes.bool,
     }).isRequired,
     hideModal: PropTypes.func.isRequired,
-    addUserRequest: PropTypes.func.isRequired
+    addUserRequest: PropTypes.func.isRequired,
   };
 
   state = {
-    userInput: ""
+    userInput: '',
   };
 
   handleHideModal = () => {
     const { hideModal } = this.props;
 
     hideModal();
-    this.setState({ userInput: "" });
+    this.setState({ userInput: '' });
   };
 
   handleSubmit = () => {
@@ -74,18 +76,11 @@ class Modal extends Component {
             {users.error && <ErrorMessage message={users.error} />}
 
             <Buttons>
-              <Button
-                onPress={this.handleHideModal}
-                disabled={users.loading || !userInput}
-              >
+              <Button onPress={this.handleHideModal} disabled={users.loading || !userInput}>
                 <Text>Cancelar</Text>
               </Button>
 
-              <Button
-                onPress={this.handleSubmit}
-                disabled={users.loading || !userInput}
-                success
-              >
+              <Button onPress={this.handleSubmit} disabled={users.loading || !userInput} success>
                 <Text>Confirmar</Text>
               </Button>
             </Buttons>
@@ -98,13 +93,12 @@ class Modal extends Component {
 
 const mapStateToProps = state => ({
   modal: state.modal,
-  users: state.users
+  users: state.users,
 });
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ ...UsersActions, ...ModalActions }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ ...UsersActions, ...ModalActions }, dispatch);
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Modal);

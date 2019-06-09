@@ -1,7 +1,7 @@
-import React, { Fragment } from "react";
+import React, { Fragment } from 'react';
 
-import Map from "~/components/Map";
-import Modal from "~/components/Modal";
+import Map from '~/components/Map';
+import Modal from '~/components/Modal';
 
 const Main = () => (
   <Fragment>
@@ -11,7 +11,7 @@ const Main = () => (
 );
 
 Main.navigationOptions = {
-  title: "MapDevs"
+  title: 'MapDevs',
 };
 
 export default Main;

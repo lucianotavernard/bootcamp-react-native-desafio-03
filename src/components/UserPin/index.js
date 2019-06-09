@@ -1,9 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import MapboxGL from "@mapbox/react-native-mapbox-gl";
+import MapboxGL from '@mapbox/react-native-mapbox-gl';
 
-import { Image } from "./styles";
+import { Image } from './styles';
 
 const UserPin = ({ user }) => (
   <MapboxGL.PointAnnotation
@@ -22,9 +22,9 @@ UserPin.propTypes = {
     avatar_url: PropTypes.string.isRequired,
     coordenates: PropTypes.shape({
       latitude: PropTypes.number,
-      longitude: PropTypes.number
-    }).isRequired
-  }).isRequired
+      longitude: PropTypes.number,
+    }).isRequired,
+  }).isRequired,
 };
 
 export default UserPin;

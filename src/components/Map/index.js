@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import MapboxGL from "@mapbox/react-native-mapbox-gl";
-import UserPin from "../UserPin";
+import MapboxGL from '@mapbox/react-native-mapbox-gl';
 
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { Creators as ModalActions } from "~/store/ducks/modal";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import UserPin from '../UserPin';
+import { Creators as ModalActions } from '~/store/ducks/modal';
 
-import styles from "./styles";
+import styles from './styles';
 
 MapboxGL.setAccessToken(
-  "pk.eyJ1IjoibHVjaWFub3RhdmVybmFyZCIsImEiOiJjanZuMTJzdGsxajZxNDN1aXZ1bjliYWZ2In0.RLhO0SUfDxfWNdfUUnoFLw"
+  'pk.eyJ1IjoibHVjaWFub3RhdmVybmFyZCIsImEiOiJjanZuMTJzdGsxajZxNDN1aXZ1bjliYWZ2In0.RLhO0SUfDxfWNdfUUnoFLw',
 );
 
 class Map extends Component {
@@ -24,17 +24,17 @@ class Map extends Component {
           avatar_url: PropTypes.string.isRequired,
           coordenates: PropTypes.shape({
             latitude: PropTypes.number,
-            longitude: PropTypes.number
-          }).isRequired
-        })
-      ).isRequired
-    }),
-    showModal: PropTypes.func.isRequired
+            longitude: PropTypes.number,
+          }).isRequired,
+        }),
+      ).isRequired,
+    }).isRequired,
+    showModal: PropTypes.func.isRequired,
   };
 
   state = {
     latitude: -5.81622313,
-    longitude: -35.21520224
+    longitude: -35.21520224,
   };
 
   handleClick = ([longitude, latitude]) => {
@@ -64,13 +64,12 @@ class Map extends Component {
 }
 
 const mapStateToProps = state => ({
-  users: state.users
+  users: state.users,
 });
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(ModalActions, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(ModalActions, dispatch);
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Map);
